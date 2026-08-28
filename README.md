@@ -15,4 +15,3 @@ I also only have one round of tool use, so if the model wants to search twice it
 
 Run the script and type in a question. If the question needs up to date information the agent will decide on its own to search the web before answering.
 
-## Bruk
