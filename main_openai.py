@@ -18,7 +18,15 @@ def search_web(query):
      results = ddgs.text(query, max_results=3)
     return str(results)
 
+#IP cv, account attacks
+def read_honeypot_log():
+   with open("ip_time.csv", "r") as file:
+      return file.read()
 
+#Top usernames
+def read_username_log():
+   with open("username_ip.csv", "r") as file:
+      return file.read()
 
 #Menu
 tools = [
@@ -35,6 +43,30 @@ tools = [
                 "required": ["query"]
             }
         }
+    },
+    {
+       "type": "function",
+       "function": {
+          "name" : "read_honeypot_log",
+          "description" : "Read the log of failed login attempts from my Azure honeypot project, including IPs adresses and attacker count and countries",
+          "parameters" : {
+             "type": "object",
+             "properties" : {},
+             "required" : []
+          }
+       }
+    },
+    {
+       "type": "function",
+       "function" : {
+          "name" : "read_username_log",
+          "description" : "Read the log of usernames that were attempted from my Azure honetpot project, including IPs, usernames and countries",
+          "parameters": {
+             "type": "object",
+             "properties" : {},
+             "required": []
+          }
+       }
     }
 ]
 
@@ -56,8 +88,15 @@ if message.tool_calls:
     messages.append(message) 
 
     for tool_call in message.tool_calls:
-        args = json.loads(tool_call.function.arguments)
-        result = search_web(args["query"])
+        if tool_call.function.name == "search_web":
+           args = json.loads(tool_call.function.arguments)
+           result = search_web(args["query"])
+        elif tool_call.function.name == "read_honeypot_log":
+           result = read_honeypot_log()
+        elif tool_call.function.name == "read_username_log":
+           result = read_username_log()
+        else: 
+           result = "Unknown tool, error"
 
         messages.append({
             "role": "tool",
