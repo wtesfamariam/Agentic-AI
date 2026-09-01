@@ -19,4 +19,12 @@ Run the script and type in a question. If the question needs up to date informat
 After I built a honeypot in Azure to catch and log real attack traffic (another project, linked [here](https://github.com/wtesfamariam/azure-honeypot-soc)), I let this agent actually use the data.
 I exported some of the logs as CSV files and added two more tools. The second tool reads through failed login attempts by IP and checks the geolocation, and the third tool reads through the usernames attackers tried. I can now ask the agent "what usernames were attempted the most" and it picks the right file and gives me an answer based on my description.
 
+## Here is an example of how the agent is working:
+Top ip:
+
+g
+top-usernam
+
+Top username:
+
 
