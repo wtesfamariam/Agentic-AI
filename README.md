@@ -21,10 +21,9 @@ I exported some of the logs as CSV files and added two more tools. The second to
 
 ## Here is an example of how the agent is working:
 Top ip:
+![Tool2](top-ip.png)
 
-g
-top-usernam
 
 Top username:
-
+![Tool3](top-username.png)
 
